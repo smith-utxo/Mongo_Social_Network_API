@@ -1,5 +1,5 @@
 // import 
-const { Schema, model, Type } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const UserSchema = new Schema(
   {
@@ -43,9 +43,10 @@ const UserSchema = new Schema(
 // create a virtual called 'friendcount' that retrieves the length of the user's 'friends' array field on query. e.g. how many friends does this person have? 
 // reduce method produces a single value. Good for getting the sum of all the elements in an array. syntax is reduce(previousValue, currentValue) => previousValue + currentValue, initialValue 
 UserSchema.virtual('friendCount').get(function () {
-  return this.friends.reduce((total, friend) => total + friend.friends.length, 0)
-})
+  return this.friends.length; 
+});
 
+// Creates the user model using this Schema 
 const User = model('User', UserSchema);
-
+// Export the User model 
 module.exports = User; 
