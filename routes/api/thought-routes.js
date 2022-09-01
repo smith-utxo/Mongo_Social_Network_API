@@ -18,6 +18,7 @@ router
 // get a single thought by id 
 router
   .route('/:id')
+  .get(getThoughtById)
   .put(editThought)
   .delete(deleteThought);
 
