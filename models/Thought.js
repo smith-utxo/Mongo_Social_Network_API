@@ -21,11 +21,14 @@ const ReactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: createAtVal = dateFormat(createdAtVal)
+   
+    }
     },
+  {
     toJSON: {
       getters: true
-    }
+    }, 
+    id: false 
   }
 );
 
@@ -40,7 +43,7 @@ const ThoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: createAtVal = dateFormat(createdAtVal)
+     
     },
     username: {
       type: String,
@@ -55,8 +58,7 @@ const ThoughtSchema = new Schema(
       getters: true
     },
     id: false
-  }
-);
+  });
 
 // Get the total number of friends 
 ThoughtSchema.virtual('reactionCount').get(function () {

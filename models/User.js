@@ -1,5 +1,5 @@
 // import 
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const UserSchema = new Schema(
   {
@@ -30,7 +30,8 @@ const UserSchema = new Schema(
         ref: 'User'
       }
     ],
-
+  },
+  {
     // Need the toJSON property if mongoose is going to use virtuals 18.2.4 
     toJSON: {
       virtuals: true,

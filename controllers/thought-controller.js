@@ -1,9 +1,9 @@
-const { Thoughts, User } = require('../models');
+const { Thought, User } = require('../models');
 
 const thoughtController = {
-  // Get all Thoughts 
+  // Get all Thought 
   getAllThoughts(req, res) {
-    Thoughts.find({})
+    Thought.find({})
       .populate({
         path: 'user',
         select: '-__v'
@@ -18,7 +18,7 @@ const thoughtController = {
   },
   // Get a thought by an id that is passed as a parameter
   getThoughtById({ params }, res) {
-    Thoughts.findOne({ _id: params.id })
+    Thought.findOne({ _id: params.id })
       .populate({
         path: 'user',
         select: '-__v'
@@ -33,11 +33,11 @@ const thoughtController = {
   },
   // create a new thought with parameter and body. 
   createNewThought({ params, body }, res) {
-    Thoughts.create(body)
+    Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
           { username: body.username },
-          { $push: { thoughts: _id } },
+          { $push: { Thought: _id } },
           { new: true }
         )
       })
@@ -52,7 +52,7 @@ const thoughtController = {
   },
   // Update or Edit a thought
   editThought({ params, body }, res) {
-    Thoughts.FindOneAndUpdate({ _id: params.id }, body,
+    Thought.FindOneAndUpdate({ _id: params.id }, body,
       {
         new: true,
         runValidators: true
@@ -69,7 +69,7 @@ const thoughtController = {
   },
   // Delete a thought
   deleteThought({ params }, res) {
-    Thoughts.FindOneAndDelete({ _id: params.id })
+    Thought.FindOneAndDelete({ _id: params.id })
       .then(deletedThought => {
         if (!deletedThought) {
           res.status(404).json({ message: 'No thought with this id!' });
@@ -81,7 +81,7 @@ const thoughtController = {
   },
   // create a reaction
   createReaction({ params, body }, res) {
-    Thoughts.findOneAndUpdate(
+    Thought.findOneAndUpdate(
       { _id: params.thoughtId },
       { $push: { reactions: body } },
       {
@@ -97,8 +97,9 @@ const thoughtController = {
       })
       .catch(err => res.json(err));
   },
+  // Delete a reaction 
   deleteReaction({ params, body }, res) {
-    Thoughts.FindOneAndDelete(
+    Thought.FindOneAndDelete(
       { _id: params.reactionId },
       { $pull: { reactions: body } },
       {
@@ -116,3 +117,4 @@ const thoughtController = {
   }
 }
 
+module.exports = thoughtController;
