@@ -11,10 +11,7 @@ const {
 } = require('../../controllers/thought-controller');
 
 // get all thoughts 
-router
-  .route('/')
-  .get(getAllThoughts)
-  .post(createNewThought);
+router.route('/').get(getAllThoughts).post(createNewThought);
 
 // get a single thought by id 
 router
