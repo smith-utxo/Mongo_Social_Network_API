@@ -8,7 +8,7 @@ An API for a social network web application where users can share their thoughts
 
 
 ## Github URL: 
-
+https://github.com/smith-utxo/Mongo_Social_Network_API
 
 ## Legal Notice: 
  © Adam T. Smith, U of M Coding Boot Camp 

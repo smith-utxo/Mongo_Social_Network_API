@@ -34,13 +34,13 @@ const thoughtController = {
   // create a new thought with parameter and body. 
   createNewThought({ params, body }, res) {
     Thought.create(body)
-      .then(({ _id }) => {
+    .then(( _id) => {
         return User.findOneAndUpdate(
           { username: body.username },
           { $push: { Thought: _id } },
           { new: true }
-        )
-      })
+    );
+        })
       .then(dbUserData => {
         if (!dbUserData) {
           res.status(404).json({ message: 'No user found with this username!' });

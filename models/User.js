@@ -1,5 +1,5 @@
 // import 
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 
 const UserSchema = new Schema(
   {
@@ -13,6 +13,7 @@ const UserSchema = new Schema(
       type: String,
       required: 'Email address is required!',
       unique: true,
+      lowercase: true,
       // can use match or validation to confirm it is a valid email address. Validation calls a function you would write while match
       // specifies a validatino regex directly. Decided to go with match here: 
       match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
@@ -20,8 +21,8 @@ const UserSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Thought'
-      }
+        ref: 'Thought',
+      },
     ],
     // This would 'use the UserSchema to validate data for friends'
     friends: [
