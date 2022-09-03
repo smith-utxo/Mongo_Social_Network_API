@@ -24,12 +24,12 @@ const thoughtController = {
       })
   },
   // create a new thought with parameter and body. 
-  createNewThought({ params, body }, res) {
+  createNewThought({ body }, res) {
     Thought.create(body)
     .then(( _id) => {
         return User.findOneAndUpdate(
-          { username: body.username },
-          { $push: { Thought: _id } },
+          { username: body.userId },
+          { $push: { Thoughts: thoughts_id } },
           { new: true }
     );
         })
