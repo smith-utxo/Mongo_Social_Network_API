@@ -88,22 +88,22 @@ createReaction({ params, body }, res) {
     .catch(err => res.json(err));
 },
 // Delete a reaction 
-deleteReaction({ params, body }, res) {
-  Thought.findOneAndDelete(
-    { _id: params.reactionId },
-    { $pull: { reactions: body } },
+deleteReaction({ params, body}, res) {
+  Thought.findOneAndUpdate(
+    { _id: params.thoughtId },
+    { $pull: { reactions: { reactionId: body.reactionId } } },
     {
       new: true,
       runValidators: true
     })
-    .then(dbThoughtData => {
+    .then((dbThoughtData) => {
       if (!dbThoughtData) {
-        res.status(404).json({ message: 'No Reaction with this Id!' })
+        res.status(404).json({ message: "no reaction with this id!" });
         return;
       }
-      res.json({ message: 'Reaction successfully deleted!' });
+      res.json(dbThoughtData);
     })
-    .catch(err => res.json(err));
+    .catch((err) => res.json(err));
 }
 }
 
