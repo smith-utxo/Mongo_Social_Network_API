@@ -5,7 +5,7 @@ An API for a social network web application where users can share their thoughts
 ![](public/screenshot.PNG)
 
 ## Video Walkthrough demonstration
-
+https://youtu.be/1HRrp20LSMg 
 
 ## Github URL: 
 https://github.com/smith-utxo/Mongo_Social_Network_API
