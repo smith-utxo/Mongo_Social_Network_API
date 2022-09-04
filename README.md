@@ -2,7 +2,7 @@
 An API for a social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list. Technologies used include Express.js for routing, MongoDB database, and the Mongoose ODM. 
 
 ## ScreenShot
-
+![](public/screenshot.PNG)
 
 ## Video Walkthrough demonstration
 
